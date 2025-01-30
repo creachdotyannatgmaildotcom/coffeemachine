@@ -10,17 +10,31 @@ spring:
     config:
       uri: 'http://localhost:8071'
 
-build:
-  version: "3.0"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+  endpoint:
+    shutdown:
+      access: unrestricted
 
-account:
-  message: "Welcome to Coffee App"
-  details:
-    name: "Bob"
-    email: "kjkj@kjlk.fr"
-  phone:
-  - 029878798
-  - 009090090
 
-
-
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+       defaultZone: http://localhost:8070/eureka
+ 
+info:
+  app:
+    name: "Coffees"
+    description: "Coffee Machine"
+    version: "2.0"
