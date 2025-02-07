@@ -3,7 +3,7 @@ spring:
     name: coffeemachine
   profiles:
     active:
-    - 'prod'
+    - 'default'
   config:
     import: 'configserver:'
   cloud:
@@ -21,8 +21,9 @@ management:
   endpoint:
     shutdown:
       access: unrestricted
-
-
+    health:
+      probes:
+        enabled: true
 eureka:
   instance:
     prefer-ip-address: true
